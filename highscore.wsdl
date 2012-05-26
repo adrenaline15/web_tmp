@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://playground.big.tuwien.ac.at:8080/highscore/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://playground.big.tuwien.ac.at:8080/highscore/" name="HighScoreServiceImplService">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://schemas.xmlsoap.org/wsdl/" namespace="http://playground.big.tuwien.ac.at:8080/highscore/"></xsd:import>
+    </xsd:schema>
+  </types>
+  <message name="publishHighScoreRequest">
+    <part name="HighScoreRequest" type="tns:highScoreResultRequest"></part>
+  </message>
+  <message name="publishHighScoreResponse">
+    <part name="return" type="xsd:int"></part>
+  </message>
+  <message name="HighScoreException">
+    <part element="tns:HighScoreException" name="HighScoreException"></part>
+  </message>
+  <portType name="HighScoreService">
+    <operation name="publishHighScore" parameterOrder="HighScoreRequest">
+      <input message="tns:publishHighScoreRequest"></input>
+      <output message="tns:publishHighScoreResponse"></output>
+      <fault message="tns:HighScoreException" name="HighScoreException"></fault>
+    </operation>
+  </portType>
+  <binding name="HighScoreServicePortBinding" type="tns:HighScoreService">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <operation name="publishHighScore"/>
+      <soap:operation soapAction=""></soap:operation>
+      <input>
+        <soap:body use="literal" namespace="http://playground.big.tuwien.ac.at:8080/highscore/"></soap:body>
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://playground.big.tuwien.ac.at:8080/highscore/"></soap:body>
+      </output>
+      <fault name="HighScoreException">
+        <soap:fault name="HighScoreException" use="literal"></soap:fault>
+      </fault>
+    </operation>
+  </binding>
+  <service name="HighScoreService">
+    <port name="HighScoreServicePort" binding="tns:HighScoreServicePortBinding">
+      <soap:address location="http://playground.big.tuwien.ac.at:8080/highscore/PublishHighScoreService"></soap:address>
+    </port>
+  </service>
+</definitions>

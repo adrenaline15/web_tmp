@@ -13,6 +13,7 @@
             <ui:define name="navigation">
                 <h:form>
                     <ul>
+                        <li><h:commandLink value="SCOOOOORE" action="#{lc.gc.callThis()}"/></li>
                         <li><h:commandLink value="#{msg.restart}" action="#{lc.gc.init}"/></li>
                         <li><h:link outcome="index" value="#{msg.logout} (#{lc.name})"/></li>
                     </ul>
